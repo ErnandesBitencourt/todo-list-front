@@ -3,6 +3,7 @@ import { CreateTask } from "../endpoints/createTask/CreateTask";
 import { ToDoList } from "../endpoints/toDoList/ToDoList";
 import { ToDoListFilters } from "../endpoints/toDoListFilters/ToDoListFilters";
 import {v4 as uuidv4 } from 'uuid'
+import { Div, H1, Header, Main, MainCreateTask } from "./StyledHome";
 
 const LOCAL_STORAGE_KEY = 'TodoAPP'
 
@@ -11,8 +12,15 @@ export const Home = () => {
   const [filterPages,setFilterPages]  = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [newTask,setNewTask]= useState([]) 
-  const [ count , seTCount] = useState(false)  
+  const [ count , seTCount] = useState(false)
+  const [changeColor, setChangeColor] = useState(true)  
 
+//change color // 
+const buttonChangeColor = () => {
+    if(changeColor===true){
+       return setChangeColor(!true)
+    }else return setChangeColor(true)
+}; 
 
 useEffect(()=>{
     const todosStored = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
@@ -91,33 +99,36 @@ useEffect(() => {
 
 
 return (
-    <div>
-        <header>
-            <h1>Todo</h1>
-        </header>
-        <main>
-            <CreateTask
-               onchangeNewtask={onchangeNewtask}
-               addTask={addTask}
-               newTask={newTask}
+   <Main  changeColor ={changeColor}>
+        <Div changeColor={changeColor}>
+            <Header>
+                <H1>T o d o</H1> <button onClick={()=>buttonChangeColor()} changeColor ={changeColor} >Mudar cor</button>
+            </Header>
+            <MainCreateTask changeColor ={changeColor} >
+                <CreateTask
+                onchangeNewtask={onchangeNewtask}
+                addTask={addTask}
+                newTask={newTask}
+                    />
+            </MainCreateTask>
+            <main changeColor ={changeColor} >
+                <ToDoList
+                filteredTodos={filteredTodos}
+                toggleTask={toggleTask}
+                deleteTask={deleteTask}
                 />
-        </main>
-        <main>
-            <ToDoList
-            filteredTodos={filteredTodos}
-            toggleTask={toggleTask}
-            deleteTask={deleteTask}
-            />
-        </main>
-        <footer>
-            <ToDoListFilters
-                count  = {count}
-                countTaskcomplete ={countTaskcomplete }
-                countTaskIncomplete={countTaskIncomplete}
-                setFilterPages={setFilterPages}
-                clearCompleteTasks={clearCompleteTasks}
-            />
-        </footer>
-    </div>
+            </main>
+            <footer changeColor ={changeColor} >
+                <ToDoListFilters
+                    count  = {count}
+                    countTaskcomplete ={countTaskcomplete }
+                    countTaskIncomplete={countTaskIncomplete}
+                    setFilterPages={setFilterPages}
+                    clearCompleteTasks={clearCompleteTasks}
+                />
+            </footer>
+        </Div>
+   </Main>
 )
 
+};

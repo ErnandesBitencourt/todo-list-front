@@ -1,21 +1,24 @@
 import React from "react"
+import { Button, Div, Input, Main } from "./StyleCreateTask";
+
 
  export const CreateTask = ({onchangeNewtask,addTask,newTask}) =>{ 
 
     return (
-        <main>
+        <Main>
             <form onSubmit={addTask}>
-               <div>
-                    <input
+               <Div>
+                    <Input
                         type={"text"}
                         onChange={onchangeNewtask}
                         name={"newTask"}
                         value={newTask}
+                        placeholder={"Create task"}
                     />
-                    <button>add Task</button>
-               </div>
+                    <Button>add Task</Button>
+               </Div>
             </form>
-        </main>
+        </Main>
     )
     
 
