@@ -1,18 +1,21 @@
 import React from "react";
+import { Input1 } from "../../home/StyledHome";
+import { Input } from "../createTask/StyleCreateTask";
+import { Div, Main } from "./StyleToDoList";
 
 
 export const ToDoList = ({ filteredTodos,toggleTask, deleteTask}) => { 
    
 
     return (
-        <main>
-            {filteredTodos.map((todo) =>{
+        <Main>
+            {filteredTodos.length> 0 ? filteredTodos.map((todo) =>{
                 const toggleTasks = () =>{
                   return  toggleTask(todo.id)
                 }
                    return(
-                    <div key={todo.id}>
-                        <input
+                    <Div key={todo.id}>
+                        <Input1
                         type={'checkbox'}
                         checked={todo.complete}
                         onChange={toggleTasks}
@@ -24,10 +27,10 @@ export const ToDoList = ({ filteredTodos,toggleTask, deleteTask}) => {
                         <div>
                             <button onClick={()=>{deleteTask(todo.id)}} > Deletar </button>
                         </div>
-                    </div>
+                    </Div>
                 ) 
-            })}
-        </main>
+            }):<p>No task created</p>}
+        </Main>
     )
 
 }

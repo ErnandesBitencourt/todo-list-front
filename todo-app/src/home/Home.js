@@ -3,7 +3,7 @@ import { CreateTask } from "../endpoints/createTask/CreateTask";
 import { ToDoList } from "../endpoints/toDoList/ToDoList";
 import { ToDoListFilters } from "../endpoints/toDoListFilters/ToDoListFilters";
 import {v4 as uuidv4 } from 'uuid'
-import { Div, H1, Header, Main, MainCreateTask } from "./StyledHome";
+import { Div, Footer, H1, Header, Main, MainCreateTask, MainTodoList } from "./StyledHome";
 
 const LOCAL_STORAGE_KEY = 'TodoAPP'
 
@@ -45,7 +45,11 @@ const onchangeNewtask = (e) =>{
 // create new task
 const addTask = (e) =>{
     e.preventDefault();
-   return setTodos([...todos, {id:uuidv4(), task:newTask, complete: false}]);
+   if(newTask.length > 0){
+    return setTodos([...todos, {id:uuidv4(), task:newTask, complete: false}]);
+   }else{
+        alert("it is necessary to write a task")
+   }
 };
 
 //dealing with the complete or incomplete task.
@@ -111,22 +115,24 @@ return (
                 newTask={newTask}
                     />
             </MainCreateTask>
-            <main changeColor ={changeColor} >
+            <MainTodoList  changeColor ={changeColor} >
                 <ToDoList
                 filteredTodos={filteredTodos}
                 toggleTask={toggleTask}
                 deleteTask={deleteTask}
                 />
-            </main>
-            <footer changeColor ={changeColor} >
-                <ToDoListFilters
-                    count  = {count}
-                    countTaskcomplete ={countTaskcomplete }
-                    countTaskIncomplete={countTaskIncomplete}
-                    setFilterPages={setFilterPages}
-                    clearCompleteTasks={clearCompleteTasks}
-                />
-            </footer>
+                
+                <Footer changeColor ={changeColor} >
+                    <ToDoListFilters
+                        count  = {count}
+                        countTaskcomplete ={countTaskcomplete }
+                        countTaskIncomplete={countTaskIncomplete}
+                        setFilterPages={setFilterPages}
+                        clearCompleteTasks={clearCompleteTasks}
+                    />
+                 </Footer>
+            </MainTodoList>
+            
         </Div>
    </Main>
 )

@@ -10,8 +10,7 @@ export const Main = styled.main`
     background-color: ${props => props.changeColor ? props => props.theme.AllTheme.LightTheme.VeryLightGray : props=> props.theme.AllTheme.DarkTheme.VeryDarkBlue};
     background-image: url(${props => props.changeColor ? props.theme.AllTheme.ImgBackgroundLightThemeDesktopMobile. BgDesktopLight: props => props.theme.AllTheme.ImgBackgroundDarkThemeDesktopMobile.BgDesktopDark});
     background-repeat: no-repeat;
-    background-size: contain;
-    
+    background-size: contain; 
 `;
 
 export const Div = styled.div`
@@ -22,9 +21,8 @@ export const Div = styled.div`
     border:  solid 1px red;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    
-
 `;
 export const Header = styled.header`
     width: 100%;
@@ -39,8 +37,7 @@ export const H1 = styled.h1`
      text-transform: uppercase;
      text-align: center;
      font-weight: ${props => props.theme.AllTheme.FontWeights700.FontWeights};;
-     color: ${props => props.theme.AllTheme.LightTheme.VeryLightGray};
-     
+     color: ${props => props.theme.AllTheme.LightTheme.VeryLightGray};   
 `;
 
 export const MainCreateTask = styled.main`
@@ -53,4 +50,38 @@ export const MainCreateTask = styled.main`
     border-radius: 10px;
     border: none;
 
+`;
+
+export const MainTodoList = styled.main`
+    width: 100%;
+    height: 100%;
+    max-height:470px;
+    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: ${ props => props.changeColor ? props =>          props.theme.AllTheme.LightTheme.VeryLightGray:props.theme.AllTheme.DarkTheme.VeryDarkDesaturatedBlue};
+  
+`;
+
+export const Footer = styled.footer`
+    width: 100%;
+    height: 100%;
+    max-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px blue;
+    background-color: ${ props => props.changeColor ? props =>  props.theme.AllTheme.LightTheme.VeryLightGray:props.theme.AllTheme.DarkTheme.VeryDarkDesaturatedBlue};
+
+`;
+
+export const Input1 = styled.input`
+    width: 20px;
+    height: 20px;
+    border-radius: 80px;
+    [type=checkbox]:checked ::before {
+        background-color: aquamarine;
+        content: " ";
+    }
 `

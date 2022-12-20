@@ -14,6 +14,7 @@ import { Button, Div, Input, Main } from "./StyleCreateTask";
                         name={"newTask"}
                         value={newTask}
                         placeholder={"Create task"}
+                        required
                     />
                     <Button>add Task</Button>
                </Div>
